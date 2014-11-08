@@ -19,19 +19,29 @@
 </head>
 
 <body ng-controller="mainController as main">
-
-  <div id="header">
-    {{main.user}}
-  </div>
-
-  <hr>
-
-  <div ng-repeat="entry in main.mockdata">
-    <a href="#" ng-click="main.comments($index)">{{$index}}: {{entry.username}} - {{entry.link}} </a>
-    <div ng-repeat="comment in entry.comments" ng-if="entry.comments.length < 0">
-      {{comment.username}} <span ng-if="entry.comments.length > 0">-</span> {{comment.comment}}
+  <div class="row">
+    <div class="col-md-3 col-md-offset-1">
+      <h1 id="header">
+        {{main.user}}
+      </h1>
+      <div ng-repeat="entry in main.feeddata">
+        <h3>
+          {{entry.username}}
+        </h3>
+        <div>
+          {{entry.link}} 
+          <button class="btn btn-info btn-xs pull-right" ng-click="postcomments = !postcomments">
+            {{entry.comments.length}} Comments
+          </button>
+        </div>
+        <div id="commentsforlinkno{{$index}}" ng-show="postcomments">
+          <div ng-repeat="comment in entry.comments" class="alert alert-warning">
+            {{comment.username}} <span ng-if="entry.comments.length > 0">-</span> {{comment.comment}}
+          </div>
+          <div>Write a comment</div>
+        </div>
+      </div>
     </div>
   </div>
-
 </body>
 </html>
