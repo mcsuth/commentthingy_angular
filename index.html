@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <title>Angular App</title>
+  <!-- jQuery -->
+  <script src="bower_components/jquery/jquery.js"></script>
+  <!-- AngularJS -->
+  <script src="angular/angular.js"></script>
+  <!--<script src="angular-route/angular-route.js"></script>-->
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <!-- FONT AWESOME CSS -->
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <!-- My JavaScript -->
+  <script src="script.js"></script>
+  <!-- My CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-controller="mainController">
+
+  <div id="header" class="">
+    <h1>{{name}}</h1>
+  </div>
+
+  <div id="menubar">
+    <a ng-click="menu()">Menu</a>
+    <a ng-click="location()">Location</a>
+    <a ng-click="about()">About this App</a>
+  </div>
+
+  <div ng-include="currentPage" style="margin-left:25px; margin-top: 25px;"></div>
+  </div>
+
+</body>
+</html>
