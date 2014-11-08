@@ -24,6 +24,8 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
   this.sumbitcomment = function(index, postcomment) {
     var eachcomment = this.feeddata[index].comments;
     eachcomment.push({username: this.user, comment:postcomment});
+    postcomment = '';
+    debugger
     //console.log(eachcomment)
   }
 }]);
