@@ -21,7 +21,7 @@
 <body ng-controller="mainController as main">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3 col-md-offset-0">
+      <div class="col-md-6 col-md-offset-0">
         <div>
           <h1 id="header" ng-init="main.commcount=0">
             <p>
@@ -32,18 +32,20 @@
           </h1>
           <hr>
         </div>
-        <div ng-repeat="entry in main.feeddata">
+        <div ng-repeat="entry in main.feeddata" class="posts">
           <h3>
             <img src="{{entry.img}}">
             {{entry.username}}
           </h3>
           <div>
             {{entry.link}} 
-            <a class="btn btn-info btn-xs pull-right" ng-click="postcomments = !postcomments; main.commcount = main.commcount + 1;">
+          </div>
+          <div class="morecomments">
+            <a class="pull-right btn btn-info btn-xs" ng-click="postcomments = !postcomments; main.commcount = main.commcount + 1;">
               {{entry.comments.length}} Comments
             </a>
           </div>
-          <div id="commentsforlinkno{{$index}}" ng-if="postcomments" ng-hide="closeallcomments">
+          <div id="commentsforlinkno{{$index}}" ng-if="postcomments" ng-hide="closeallcomments" class="commentsforlinks">
             <div ng-repeat="comment in entry.comments" class="postcomments">
               <img src="{{comment.img}}">
               <span>
@@ -55,7 +57,7 @@
               </p>
             </div>
             <input type="text" class="form-control" placeholder="Write a comment" ng-model="main.postcomment" ng-keydown="count = count + 1" ng-init="count=0"/>
-            <button class="pull-right btn btn-primary btn-xs" ng-if="count > 0" ng-click="main.sumbitcomment($index, main.postcomment); main.postcomment=''">Submit</button>
+            <button class="pull-right btn btn-primary btn-xs submitcomment" ng-if="count > 0" ng-click="main.sumbitcomment($index, main.postcomment); main.postcomment=''">Submit</button>
           </div>
         </div>
       </div>
