@@ -1,19 +1,19 @@
 var app = angular.module('app', []);
 
 app.controller('mainController', ['$scope', '$http', function($scope, $http) {
-  $scope.name = 'Angular App';
-  $scope.currentPage = '';
-
-  $scope.menu = function() {
-    $scope.currentPage = 'pages/menu.html';
-  };
-
-  $scope.location = function() {
-    $scope.currentPage = 'pages/location.html';
-  };
-
-  $scope.about = function() {
-    $scope.currentPage = 'pages/about.html';
-  };
-
+  this.user = "Seimith";
+  this.mockdata = [
+    {username: 'Anderson Von Quigley', link: 'Chickamauga Battlefield Marathon', comments: [
+                                                                                            {username: 'Ryan Williams', comment:'Can I do this?'}, 
+                                                                                            {username: 'Bryan Lee', comment:'Yeah, man!'}, 
+                                                                                            {username: 'Tejas Meta', comment:'The questions is how fast can you go?'}, 
+                                                                                            ]},
+    {username: 'Fred Bradley', link: 'Lake Chabot Trail Marathon', comments: {test:'can i do this'}},
+    {username: 'Anderson Von Quigley', link: 'Mesquite Tri-State Marathon', comments: {test:'can i do this'}},
+    {username: 'Anderson Von Quigley', link: 'NJ Trail Series One Day Marathon', comments: {test:'can i do this'}}
+  ];  
+  this.comments = function(index) {
+    this.comment = this.mockdata[index].comments;
+    debugger
+  }
 }]);

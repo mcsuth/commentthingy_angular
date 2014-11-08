@@ -18,19 +18,19 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body ng-controller="mainController">
+<body ng-controller="mainController as main">
 
-  <div id="header" class="">
-    <h1>{{name}}</h1>
+  <div id="header">
+    {{main.user}}
   </div>
 
-  <div id="menubar">
-    <a ng-click="menu()">Menu</a>
-    <a ng-click="location()">Location</a>
-    <a ng-click="about()">About this App</a>
-  </div>
+  <hr>
 
-  <div ng-include="currentPage" style="margin-left:25px; margin-top: 25px;"></div>
+  <div ng-repeat="entry in main.mockdata">
+    <a href="#" ng-click="main.comments($index)">{{$index}}: {{entry.username}} - {{entry.link}} </a>
+    <div ng-repeat="comment in entry.comments" ng-if="entry.comments.length < 0">
+      {{comment.username}} <span ng-if="entry.comments.length > 0">-</span> {{comment.comment}}
+    </div>
   </div>
 
 </body>
