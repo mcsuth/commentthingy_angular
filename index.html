@@ -19,26 +19,35 @@
 </head>
 
 <body ng-controller="mainController as main">
-  <div class="row">
-    <div class="col-md-3 col-md-offset-1">
-      <h1 id="header">
-        {{main.user}}
-      </h1>
-      <div ng-repeat="entry in main.feeddata">
-        <h3>
-          {{entry.username}}
-        </h3>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1">
         <div>
-          {{entry.link}} 
-          <button class="btn btn-info btn-xs pull-right" ng-click="postcomments = !postcomments">
-            {{entry.comments.length}} Comments
-          </button>
+          <h1 id="header" ng-init="main.commcount=0">
+            <p>
+              {{main.user}}
+              <a href class="pull-right btn btn-info" ng-show="main.commcount > 0" ng-click="main.closeallcomments()">Back</a>
+            </p>
+          </h1>
         </div>
-        <div id="commentsforlinkno{{$index}}" ng-show="postcomments">
-          <div ng-repeat="comment in entry.comments" class="alert alert-warning">
-            {{comment.username}} <span ng-if="entry.comments.length > 0">-</span> {{comment.comment}}
+        <div ng-repeat="entry in main.feeddata">
+          <h3>
+            {{entry.username}}
+          </h3>
+          <div>
+            {{entry.link}} 
+            <button class="btn btn-info btn-xs pull-right" ng-click="postcomments = !postcomments; main.commcount = main.commcount + 1;">
+              {{entry.comments.length}} Comments
+            </button>
           </div>
-          <div>Write a comment</div>
+          <div id="commentsforlinkno{{$index}}" ng-if="postcomments" ng-hide="closeallcomments">
+            <hr>
+            <div ng-repeat="comment in entry.comments" class="alert alert-warning">
+              {{comment.username}} <span ng-if="entry.comments.length > 0">-</span> {{comment.comment}}
+            </div>
+            <input type="text" class="form-control" placeholder="Write a comment" ng-model="main.postcomment" ng-keydown="count = count + 1" ng-init="count=0"/>
+            <button class="pull-right btn btn-primary btn-xs" ng-if="count > 0" ng-click="main.sumbitcomment($index, main.postcomment)">Submit</button>
+          </div>
         </div>
       </div>
     </div>

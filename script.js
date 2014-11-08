@@ -17,5 +17,13 @@ app.controller('mainController', ['$scope', '$http', function($scope, $http) {
                                                                                             {username: 'Bryan Lee', comment:'Yeah, man!'}, 
                                                                                             ]},
   ];  
-  
+  this.closeallcomments = function() {
+    $scope.closeallcomments = false;
+    this.commcount = 0;
+  };
+  this.sumbitcomment = function(index, postcomment) {
+    var eachcomment = this.feeddata[index].comments;
+    eachcomment.push({username: this.user, comment:postcomment});
+    //console.log(eachcomment)
+  }
 }]);
