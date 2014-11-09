@@ -15,23 +15,19 @@
             <img ng-src="{{comment.img}}">
             <span>
               {{comment.username}}
-              <div class="text-danger pull-right" ng-if="comment.username === main.user.name"><i class="icon-remove"></i></div>
+              <div class="text-danger pull-right" ng-if="comment.username === main.user.username"><i class="icon-remove"></i></div>
             </span>
             <p>
               {{comment.comment}} 
             </p>
           </div>
-          <input type="text" class="form-control" placeholder="Write a comment" ng-model="main.postcomment" ng-keydown="count = count + 1" ng-init="count=0"/>
-          <button class="pull-right btn btn-primary btn-xs submitcomment" ng-if="count > 0" ng-click="main.sumbitcomment($index, main.postcomment); main.postcomment=''">Submit</button>
+          <form ng-submit="add.addComment(newItem); newItem = '';">
+            <input type="text" class="form-control" placeholder="Comment Here" ng-model="newItem"/>
+            <br />
+            <input class="btn" type="submit"/>
+          </form>
         </div>
       </div>
     </div>
   </div>
-
-  <h2>Add Comment</h2>
-  <form ng-submit="add.add(newItem); newItem = '';">
-    <input type="text" placeholder="new item..." ng-model="newItem"/>
-    <br />
-    <input class="btn" type="submit"/>
-  </form>
 </div>
