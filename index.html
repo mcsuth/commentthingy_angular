@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="myApp">
 <head>
   <title>Angular App</title>
   <!-- jQuery -->
   <script src="bower_components/jquery/jquery.js"></script>
   <!-- AngularJS -->
   <script src="angular/angular.js"></script>
+  <script src="angular-route/angular-route.js"></script>
   <!--<script src="angular-route/angular-route.js"></script>-->
   <!-- BOOTSTRAP -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -21,47 +22,24 @@
 <body ng-controller="mainController as main">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6 col-md-offset-0">
+      <div class="col-md-3 col-md-offset-0">
         <div>
-          <h1 id="header" ng-init="main.commcount=0">
+          <h1 id="header">
             <p>
-              <img src="{{main.user.img}}">
-              {{main.user.name}}
-              <a href class="pull-right btn btn-info" ng-show="main.commcount > 0" ng-click="main.closeallcomments()">Back</a>
+              <div ng-repeat="currentUser in main.currentUser()">
+                <img ng-src="{{currentUser.img}}">
+                {{currentUser.name}}
+              </div>
             </p>
           </h1>
           <hr>
-        </div>
-        <div ng-repeat="entry in main.feeddata" class="posts">
-          <h3>
-            <img src="{{entry.img}}">
-            {{entry.username}}
-          </h3>
-          <div>
-            {{entry.link}} 
-          </div>
-          <div class="morecomments">
-            <a class="pull-right btn btn-info btn-xs" ng-click="postcomments = !postcomments; main.commcount = main.commcount + 1;">
-              {{entry.comments.length}} Comments
-            </a>
-          </div>
-          <div id="commentsforlinkno{{$index}}" ng-if="postcomments" ng-hide="closeallcomments" class="commentsforlinks">
-            <div ng-repeat="comment in entry.comments" class="postcomments">
-              <img src="{{comment.img}}">
-              <span>
-                {{comment.username}}
-                <div class="text-danger pull-right" ng-if="comment.username === main.user.name"><i class="icon-remove"></i></div>
-              </span>
-              <p>
-                {{comment.comment}} 
-              </p>
-            </div>
-            <input type="text" class="form-control" placeholder="Write a comment" ng-model="main.postcomment" ng-keydown="count = count + 1" ng-init="count=0"/>
-            <button class="pull-right btn btn-primary btn-xs submitcomment" ng-if="count > 0" ng-click="main.sumbitcomment($index, main.postcomment); main.postcomment=''">Submit</button>
-          </div>
+          <a href="#/addpost" class="btn btn-primary btn-xs">Add Post</a>
+          <a href="#/" class="btn btn-default btn-xs">Back</a>
+          <hr>
         </div>
       </div>
     </div>
   </div>
+  <div ng-view></div>
 </body>
 </html>

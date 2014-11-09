@@ -1,0 +1,37 @@
+<div class="container-fluid" ng-controller="addCommentController as add">
+  <div class="row">
+    <div class="col-md-3 col-md-offset-0">
+      <div class="posts">
+        <h3>
+          <img ng-src="{{main.list()[add.postIndexforcomment()].img}}">
+          {{main.list()[add.postIndexforcomment()].username}}
+        </h3>
+        <div>
+          {{main.list()[add.postIndexforcomment()].link}} 
+        </div>
+        <hr>
+        <div id="commentsforlinkno{{$index}}">
+          <div ng-repeat="comment in main.list()[add.postIndexforcomment()].comments" class="postcomments">
+            <img ng-src="{{comment.img}}">
+            <span>
+              {{comment.username}}
+              <div class="text-danger pull-right" ng-if="comment.username === main.user.name"><i class="icon-remove"></i></div>
+            </span>
+            <p>
+              {{comment.comment}} 
+            </p>
+          </div>
+          <input type="text" class="form-control" placeholder="Write a comment" ng-model="main.postcomment" ng-keydown="count = count + 1" ng-init="count=0"/>
+          <button class="pull-right btn btn-primary btn-xs submitcomment" ng-if="count > 0" ng-click="main.sumbitcomment($index, main.postcomment); main.postcomment=''">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Add Comment</h2>
+  <form ng-submit="add.add(newItem); newItem = '';">
+    <input type="text" placeholder="new item..." ng-model="newItem"/>
+    <br />
+    <input class="btn" type="submit"/>
+  </form>
+</div>

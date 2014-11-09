@@ -1,0 +1,34 @@
+<div class="container-fluid" ng-controller="mainController as main">
+  <div class="row">
+    <div class="col-md-3 col-md-offset-0">
+      <div ng-repeat="entry in main.list()" class="posts">
+        <h3>
+          <img ng-src="{{entry.img}}">
+          {{entry.username}}
+        </h3>
+        <div>
+          {{entry.link}} 
+        </div>
+        <div class="morecomments">
+          <a class="pull-right btn btn-info btn-xs" href="#/addcomment" ng-click="postcomments = !postcomments; main.whatindex($index); main.postIndexforcomment()" >
+            {{entry.comments.length}} Comments
+          </a>
+        </div>
+        <div id="commentsforlinkno{{$index}}" ng-if="postcomments" ng-hide="closeallcomments" class="commentsforlinks">
+          <div ng-repeat="comment in entry.comments" class="postcomments">
+            <img ng-src="{{comment.img}}">
+            <span>
+              {{comment.username}}
+              <div class="text-danger pull-right" ng-if="comment.username === main.user.name"><i class="icon-remove"></i></div>
+            </span>
+            <p>
+              {{comment.comment}} 
+            </p>
+          </div>
+          <input type="text" class="form-control" placeholder="Write a comment" ng-model="main.postcomment" ng-keydown="count = count + 1" ng-init="count=0"/>
+          <button class="pull-right btn btn-primary btn-xs submitcomment" ng-if="count > 0" ng-click="main.sumbitcomment($index, main.postcomment); main.postcomment=''">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
