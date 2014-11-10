@@ -19,10 +19,10 @@
                 <i class="icon-remove" ng-click="open(this.$index)"></i>
               </div>
             </span>
-            <p>
-              {{comment.comment}} 
-              <pre>{{comment|json}}</pre>
-            </p>
+            <div>
+              <p>{{comment.comment}} </p>
+              <p><small>{{comment.time}}</small></p>
+            </div>
           </div>
           <form ng-submit="addcomment.addComment(feedcomment); feedcomment = '';">
             <input type="text" class="form-control" placeholder="Comment Here" ng-model="feedcomment"/>

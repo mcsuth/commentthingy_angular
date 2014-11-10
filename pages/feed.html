@@ -10,7 +10,8 @@
           </div> -->
         </h3>
         <div>
-          {{entry.link}} 
+          <p>{{entry.link}}</p>
+          <p><small>{{entry.time}}</small></p
         </div>
         <div class="morecomments">
           <a class="pull-right btn btn-info btn-xs" href="#/addcomment" ng-click="feed.whatindex($index); feed.postIndexforcomment()" ng-if="entry.comments.length > 0">
