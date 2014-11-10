@@ -21,7 +21,7 @@
             </span>
             <div>
               <p>{{comment.comment}} </p>
-              <p><small>{{comment.time}}</small></p>
+              <p><small>{{comment.time | date:'MMM d, y @ h:mm a'}}</small></p>
             </div>
           </div>
           <form ng-submit="addcomment.addComment(feedcomment); feedcomment = '';">
