@@ -1,5 +1,5 @@
 <div class="container-fluid" ng-controller="addCommentController as addcomment">
-  <div class="row">
+  <div class="row" ng-class="{blur: $index}">
     <div class="col-md-3 col-md-offset-0">
       <div class="posts page {{ pageClass }}">
         <h3>
@@ -21,6 +21,7 @@
             </span>
             <p>
               {{comment.comment}} 
+              <pre>{{comment|json}}</pre>
             </p>
           </div>
           <form ng-submit="addcomment.addComment(feedcomment); feedcomment = '';">
