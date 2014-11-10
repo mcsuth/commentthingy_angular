@@ -2,44 +2,50 @@
 <html ng-app="myApp">
 <head>
   <title>Angular App</title>
+  <!-- My CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animation.css">
   <!-- jQuery -->
   <script src="bower_components/jquery/jquery.js"></script>
   <!-- AngularJS -->
   <script src="angular/angular.js"></script>
+  <script src="angular/ui-bootstrap.js"></script>
+  <script src="angular/ng-animate.js"></script>
   <script src="angular-route/angular-route.js"></script>
-  <!--<script src="angular-route/angular-route.js"></script>-->
   <!-- BOOTSTRAP -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <!-- FONT AWESOME CSS -->
   <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-  <!-- My JavaScript -->
-  <script src="script.js"></script>
-  <!-- My CSS -->
-  <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body ng-controller="mainController as main">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3 col-md-offset-0">
-        <div>
-          <h1 id="header">
-            <p>
-              <div ng-repeat="currentUser in main.currentUser()">
-                <img ng-src="{{currentUser.img}}">
-                {{currentUser.username}}
-              </div>
-            </p>
-          </h1>
-          <hr>
-          <a href="#/addpost" class="btn btn-primary btn-xs">Add Post</a>
-          <a href="#/" class="btn btn-default btn-xs">Back</a>
-          <hr>
+<body>
+  <div ng-controller="mainController as main" ng-class="animation">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3 col-md-offset-0">
+          <div>
+            <h1 id="header">
+              <p>
+                <div ng-repeat="currentUser in main.currentUser()">
+                  <img ng-src="{{currentUser.img}}">
+                  {{currentUser.username}}
+                  <a href="#/addpost" class="pull-right btn btn-primary btn-xs">Add Post</a>
+                  <br>
+                  <a href="#/" class="pull-right btn btn-default btn-xs" ng-if="main.pathlocation.path() == '/addcomment'">Back to Feed</a>
+                </div>
+              </p>
+            </h1>
+            <!-- {{main.pathlocation.path()}} --> 
+          </div>
         </div>
       </div>
     </div>
+    <div >
+      <div ng-view class="view"></div>
+    </div>
   </div>
-  <div ng-view></div>
+  <!-- My JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>

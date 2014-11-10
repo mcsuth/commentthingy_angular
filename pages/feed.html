@@ -1,20 +1,23 @@
-<div class="container-fluid" ng-controller="mainController as main">
+<div class="container-fluid" ng-controller="mainController as feed">
   <div class="row">
     <div class="col-md-3 col-md-offset-0">
-      <div ng-repeat="entry in main.list()" class="posts">
+      <div ng-repeat="entry in feed.list()" class="posts">
         <h3>
           <img ng-src="{{entry.img}}">
           {{entry.username}}
+          <!-- <div class="text-danger pull-right">
+            <i class="icon-remove" ng-click="open(this.$index)"></i>
+          </div> -->
         </h3>
         <div>
           {{entry.link}} 
         </div>
         <div class="morecomments">
-          <a class="pull-right btn btn-info btn-xs" href="#/addcomment" ng-click="main.whatindex($index); main.postIndexforcomment()" ng-if="entry.comments.length > 0">
+          <a class="pull-right btn btn-info btn-xs" href="#/addcomment" ng-click="feed.whatindex($index); feed.postIndexforcomment()" ng-if="entry.comments.length > 0">
             {{entry.comments.length}} Comment<span ng-hide="entry.comments.length == 1">s</span>
           </a>
-          <a class="pull-right btn btn-info btn-xs" href="#/addcomment" ng-click="main.whatindex($index); main.postIndexforcomment()" ng-if="entry.comments.length == 0">
-            No Comments.
+          <a class="pull-right btn btn-info btn-xs" href="#/addcomment" ng-click="feed.whatindex($index); feed.postIndexforcomment()" ng-if="entry.comments.length == 0">
+            No Comments
           </a>
         </div>
       </div>

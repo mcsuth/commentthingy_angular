@@ -1,30 +1,32 @@
-<div class="container-fluid" ng-controller="addCommentController as add">
+<div class="container-fluid" ng-controller="addCommentController as addcomment">
   <div class="row">
     <div class="col-md-3 col-md-offset-0">
-      <div class="posts">
+      <div class="posts page {{ pageClass }}">
         <h3>
-          <img ng-src="{{main.list()[add.postIndexforcomment()].img}}">
-          {{main.list()[add.postIndexforcomment()].username}}
+          <img ng-src="{{main.list()[addcomment.postIndexforcomment()].img}}">
+          {{main.list()[addcomment.postIndexforcomment()].username}}
         </h3>
         <div>
-          {{main.list()[add.postIndexforcomment()].link}} 
+          {{main.list()[addcomment.postIndexforcomment()].link}} 
         </div>
         <hr>
         <div id="commentsforlinkno{{$index}}">
-          <div ng-repeat="comment in main.list()[add.postIndexforcomment()].comments" class="postcomments">
+          <div ng-repeat="comment in main.list()[addcomment.postIndexforcomment()].comments" class="postcomments animate-repeat" ng-class="{in: animate}">
             <img ng-src="{{comment.img}}">
             <span>
               {{comment.username}}
-              <div class="text-danger pull-right" ng-if="comment.username === main.user.username"><i class="icon-remove"></i></div>
+              <div class="text-danger pull-right" ng-if="comment.username == addcomment.currentUser()[0].username">
+                <i class="icon-remove" ng-click="open(this.$index)"></i>
+              </div>
             </span>
             <p>
               {{comment.comment}} 
             </p>
           </div>
-          <form ng-submit="add.addComment(newItem); newItem = '';">
-            <input type="text" class="form-control" placeholder="Comment Here" ng-model="newItem"/>
+          <form ng-submit="addcomment.addComment(feedcomment); feedcomment = '';">
+            <input type="text" class="form-control" placeholder="Comment Here" ng-model="feedcomment"/>
             <br />
-            <input class="btn" type="submit"/>
+            <input class="btn" type="submit" href="#/"/>
           </form>
         </div>
       </div>
