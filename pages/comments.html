@@ -4,7 +4,7 @@
       <div class="posts">
         <h3>
           <img ng-src="{{main.list()[addcomment.postIndexforcomment()].img}}">
-          {{main.list()[addcomment.postIndexforcomment()].username}} <!-- {{main.pathlocation.path()}} -->
+          {{main.list()[addcomment.postIndexforcomment()].username}}
         </h3>
         <div>
           {{main.list()[addcomment.postIndexforcomment()].link}} 
@@ -18,7 +18,7 @@
             <span>
               {{comment.username}}
               <div class="text-danger pull-right" ng-if="comment.username == addcomment.currentUser()[0].username">
-                <i class="icon-remove" ng-click="open(this.$index)"></i>
+                <i class="icon-remove" ng-click="open(0, this.$index, main.pathlocation.path())"></i>
               </div>
             </span>
             <div>

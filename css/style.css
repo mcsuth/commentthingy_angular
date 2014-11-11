@@ -28,7 +28,7 @@ h3 {
   margin: 0 5px 0 0;
 }
 .postcomments p {
-  margin: 0 10px 0px 40px;
+  margin: 0 10px 0px 0px;
 }
 input.form-control {
   margin: 20px 0 0 0;
@@ -70,4 +70,10 @@ a.btn, input.btn {
 }
 h3 > img {
   margin: 0 10px 0 0;
+}
+.modal-content {
+  border-radius: 0px !important;
+}
+#header div a.addPost {
+  margin: 10px 0 0 0;
 }

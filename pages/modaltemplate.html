@@ -1,4 +1,3 @@
-{{main.pathlocation.path()}}
 <div class="container-fluid" ng-controller="addCommentController as addcomment">
   <div class="modal-header">
     <h3 class="modal-title">Delete</h3>
@@ -7,8 +6,14 @@
     Are you sure you want to delete this post?
   </div>
   <div class="modal-footer">
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-primary" ng-click="addcomment.removePost(addcomment.getCommentIndex(),main.pathlocation.path()); ok()" ng-if="addcomment.getPath() == '/'">Yes Remove Post</button>
-    <button class="btn btn-primary" ng-click="addcomment.removeComment(addcomment.getCommentIndex(),main.pathlocation.path()); ok()" ng-if="addcomment.getPath() == '/addcomment'">Yes Remove Comment</button>
+    <div class="row">
+      <div class="col-md-6">
+        <a href class="btn btn-primary btn-xs" ng-click="addcomment.removePost(addcomment.getCommentIndex(),main.pathlocation.path()); ok()" ng-if="addcomment.getPath() == '/'">Remove Post</a>
+        <a href class="btn btn-primary" ng-click="addcomment.removeComment(addcomment.getCommentIndex(),main.pathlocation.path()); ok()" ng-if="addcomment.getPath() == '/addcomment'">Remove Comment</a>
+      </div>
+      <div class="col-md-6">
+        <a href class="btn btn-warning btn-xs" ng-click="cancel()">Cancel</a href>
+      </div>
+    </div>
   </div>
 </div>
