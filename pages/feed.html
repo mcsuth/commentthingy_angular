@@ -4,9 +4,9 @@
       <div ng-repeat="entry in feed.list()" class="posts">
         <h3>
           <img ng-src="{{entry.img}}">
-          {{entry.username}} {{main.pathlocation.path()}}
+          {{entry.username}}
           <div class="text-danger pull-right" ng-if="entry.username == main.currentUser()[0].username">
-            <i class="icon-remove" ng-click="open(this.$index)"></i>
+            <i class="icon-remove" ng-click="open(0, this.$index, main.pathlocation.path())"></i>
           </div>
         </h3>
         <div>

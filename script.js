@@ -12,7 +12,8 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
     ]; 
     var feeditems = {};
     var itemComment;
-    
+    var thepath;
+
     feeditems.add = function(item) {
       var d = new Date();
       var n = d.getTime();
@@ -21,7 +22,6 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
     };
     feeditems.removePost = function(index, path) {
       mockdata.splice(index,1)
-      // debugger
     };
     feeditems.currentUser = function() {
       return currentUser;
@@ -49,6 +49,12 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
     };
     feeditems.removeComment = function(index) {
       mockdata[postIndexforcomment].comments.splice(index,1);
+    };
+    feeditems.setPath = function(path) {
+      thepath = path;
+    };
+    feeditems.getPath = function(path) {
+      return thepath;
     };
     return feeditems;
   })
@@ -90,8 +96,7 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
         index: $index,
       });
       this.setCommentIndex = factory.setCommentIndex(this.$index);
-      debugger
-      console.log(this.pathlocation)
+      this.setPath = factory.setPath(path);
     };
   }])
 
@@ -111,10 +116,12 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
     this.getCommentIndex = factory.getCommentIndex;
     this.pathlocation = $location;
     this.removePost = factory.removePost;
+    this.getPath = factory.getPath;
   }])
 
   .controller('modalInstanceCtrl', ['$scope', '$modalInstance', 'factory', function($scope, $modalInstance, factory) {
     this.getCommentIndex = factory.getCommentIndex;
+    this.getPath = factory.getPath;
     $scope.ok = function () {
       $modalInstance.close();
     };
