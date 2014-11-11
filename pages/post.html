@@ -3,10 +3,10 @@
     <div class="col-md-12 col-md-offset-0">
       <div class="posts">
         <h2>Write a Post</h2>
-        <form ng-submit="post.add(newItem); newItem = '';">
-          <input type="text" class="form-control" placeholder="new item..." ng-model="newItem"/>
+        <form name="myForm">
+          <input type="text" class="form-control" placeholder="Write a Post..." ng-model="newItem" required/>
           <br />
-          <input class="btn" type="submit"/>
+          <a class="btn btn-primary animate-repeat" ng-if="myForm.$valid" ng-click="post.add(newItem); newItem = '';" href="/">Add Post</a>
         </form>
       </div>
     </div>

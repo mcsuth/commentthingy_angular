@@ -4,12 +4,14 @@
       <div class="posts">
         <h3>
           <img ng-src="{{main.list()[addcomment.postIndexforcomment()].img}}">
-          {{main.list()[addcomment.postIndexforcomment()].username}}
+          {{main.list()[addcomment.postIndexforcomment()].username}} {{main.pathlocation.path()}}
         </h3>
         <div>
           {{main.list()[addcomment.postIndexforcomment()].link}} 
         </div>
-        <hr>
+        <div>
+          <p class="text-right"><small>{{main.list()[addcomment.postIndexforcomment()].time | date:'MMM d, y @ h:mm a'}}</small></p>
+        </div>
         <div id="commentsforlinkno{{$index}}">
           <div ng-repeat="comment in main.list()[addcomment.postIndexforcomment()].comments" class="postcomments animate-repeat">
             <img ng-src="{{comment.img}}">
@@ -21,13 +23,15 @@
             </span>
             <div>
               <p>{{comment.comment}} </p>
-              <p><small>{{comment.time | date:'MMM d, y @ h:mm a'}}</small></p>
+            </div>
+            <div>
+              <p class="text-right"><small>{{comment.time | date:'MMM d, y @ h:mm a'}}</small></p>
             </div>
           </div>
-          <form ng-submit="addcomment.addComment(feedcomment); feedcomment = '';">
-            <input type="text" class="form-control" placeholder="Comment Here" ng-model="feedcomment"/>
+          <form name="myForm">
+            <input type="text" class="form-control" placeholder="Write a Comment..." ng-model="feedcomment" required/>
             <br />
-            <input class="btn" type="submit" href="#/"/>
+            <a class="btn btn-primary animate-repeat" type="submit" ng-if="myForm.$valid" ng-click="addcomment.addComment(feedcomment); feedcomment = ''" href="/">Add Comment</a>
           </form>
         </div>
       </div>

@@ -12,12 +12,11 @@ h3 {
 }
 .postcomments {
   background: #FFF;
-  margin: 10px 0 10px 0;
-  border-radius: 50px;
+  margin: 20px 0 0 0;
   padding: 15px;
 }
 .postcomments img {
-  margin: -15px 15px 0 -20px;
+  margin: -10px 15px 0 0px;
   width: 40px;
   height: 40px;
 }
@@ -32,7 +31,7 @@ h3 {
   margin: 0 10px 0px 40px;
 }
 input.form-control {
-  border-radius: 20px;
+  margin: 20px 0 0 0;
 }
 .morecomments {
   padding: 10px 0px 15px 0px;
@@ -48,7 +47,7 @@ input.form-control {
 header {
   padding: 20px;
   background: rgba(255, 228, 128, 0.9);
-  height: 100px;
+  height: 105px;
   width: 100%;
   position: fixed;
   z-index: 5;
@@ -57,11 +56,17 @@ header {
   transition: top 0.2s ease-in-out;
 }
 .nav-up {
-    top: -100px;
+    top: -105px;
 }
 a.btn, input.btn {
   border-radius: 0px;
   padding: 5px 15px 5px 15px;
+  width: 100%;
+}
+#header .addPost {
+  border-radius: 0px;
+  padding: 5px 15px 5px 15px;
+  width: 150px;
 }
 h3 > img {
   margin: 0 10px 0 0;

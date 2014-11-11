@@ -8,17 +8,20 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
       {username: 'Fred', img: 'img/male.png', time:1415640310207, link: 'Doner capicola chuck shoulder prosciutto tongue. Strip steak drumstick biltong chuck sirloin pancetta cow shank turducken tenderloin venison. Shankle t-bone bacon drumstick shoulder jowl frankfurter pancetta sausage tri-tip short loin.', comments: [{username: 'Ryan', img: 'img/male.png',time:1415640310207, comment:'Can I do this?'}, {username: currentUser[0].username, img: currentUser[0].img, time:1415640310207, comment:'Yeah, man!'}, {username: 'Jackie', img: 'img/fem.png',time:1415640310207, comment:'Nope.'}]},
       {username: 'Jackie', img: 'img/fem.png', time:1415640310207, link: 'Drumstick bacon beef sirloin, tri-tip porchetta pastrami.', comments: []},
       {username: 'Anderson', img: 'img/male.png', time:1415640310207, link: 'Prosciutto sirloin pancetta pork pig rump, brisket biltong pastrami short loin leberkas doner tenderloin. Ham hock drumstick rump short ribs, sirloin ball tip pork belly boudin landjaeger ground round meatball.', comments: [{username: 'Ryan', img: 'img/male.png',time:1415640310207, comment:'Can I do this?'}, {username: 'Bryan', img: 'img/male.png',time:1415640310207, comment:'Yeah, man!'} ]},
+      {username: 'Reza', img: 'img/male.png', time:1415640310207, link: 'Ham hock drumstick rump short ribs, sirloin ball tip pork belly boudin landjaeger ground round meatball.', comments: []}
     ]; 
     var feeditems = {};
     var itemComment;
     
     feeditems.add = function(item) {
-      // mockdata.push(item);
       var d = new Date();
       var n = d.getTime();
-      itemComment = {username: currentUser[0].username, img: currentUser[0].img, link: item, time: n, comments: []};
-      mockdata.push(itemComment);
-      debugger
+      var itemComment = {username: currentUser[0].username, img: currentUser[0].img, link: item, time: n, comments: []};
+      mockdata.unshift(itemComment);
+    };
+    feeditems.removePost = function(index, path) {
+      mockdata.splice(index,1)
+      // debugger
     };
     feeditems.currentUser = function() {
       return currentUser;
@@ -35,7 +38,7 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
     feeditems.addComment = function(item) {
       var d = new Date();
       var n = d.getTime();
-      itemComment = {username: currentUser[0].username, img: currentUser[0].img, comment: item, time: n};
+      var itemComment = {username: currentUser[0].username, img: currentUser[0].img, comment: item, time: n};
       mockdata[postIndexforcomment].comments.push(itemComment);
     };
     feeditems.setCommentIndex = function(index) {
@@ -45,20 +48,18 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
       return commentIndex;
     };
     feeditems.removeComment = function(index) {
-      var mycomment = mockdata[postIndexforcomment].comments[index];
       mockdata[postIndexforcomment].comments.splice(index,1);
     };
     return feeditems;
   })
+
   .config(function($routeProvider) {
     $routeProvider
-      // route for the home page
       .when('/', {
           templateUrl : 'pages/feed.html',
           controller  : 'mainController',
           animation: 'first'
       })
-      // route for the about page
       .when('/addpost', {
           templateUrl : 'pages/post.html',
           controller  : 'addPostController',
@@ -71,50 +72,53 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
       })
     })
 
-function mainController($scope, factory, $route, $routeParams, $location, $modal, $log, $rootScope){
-  $rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
-    $rootScope.animation = currRoute.animation;
-  });
-  this.list = factory.list; 
-  this.currentUser = factory.currentUser;
-  this.whatindex = factory.setIndex;
-  this.pathroute = $route;
-  this.pathlocation = $location;
-
-  $scope.modalitem;
-  $scope.open = function (size, $index) {
-    var modalInstance = $modal.open({
-      templateUrl: 'pages/modaltemplate.html',
-      controller: 'modalInstanceCtrl',
-      size: size,
-      index: $index,
+  .controller('mainController', ['$scope', 'factory', '$route', '$routeParams', '$location', '$modal', '$log', '$rootScope', function($scope, factory, $route, $routeParams, $location, $modal, $log, $rootScope) {
+    $rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
+      $rootScope.animation = currRoute.animation;
     });
-    this.modalitem = this.$index;
-    this.setCommentIndex = factory.setCommentIndex(this.modalitem);
-  };
-}
+    this.list = factory.list; 
+    this.currentUser = factory.currentUser;
+    this.whatindex = factory.setIndex;
+    this.pathroute = $route;
+    this.pathlocation = $location;
+    $scope.modalitem;
+    $scope.open = function (size, $index, path) {
+      var modalInstance = $modal.open({
+        templateUrl: 'pages/modaltemplate.html',
+        controller: 'modalInstanceCtrl',
+        size: size,
+        index: $index,
+      });
+      this.setCommentIndex = factory.setCommentIndex(this.$index);
+      debugger
+      console.log(this.pathlocation)
+    };
+  }])
 
-function addPostController($scope, factory) {
-  this.add = factory.add;
-}
-function addCommentController($scope, factory, $rootScope){
-  this.blur = "blurbackground";
-  $rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
-    $rootScope.animation = currRoute.animation;
-  });
-  this.currentUser = factory.currentUser;
-  this.postIndexforcomment = factory.postIndexforcomment;
-  this.addComment = factory.addComment;
-  this.removeComment = factory.removeComment;
-  this.getCommentIndex = factory.getCommentIndex;
-}
+  .controller('addPostController', ['$scope', 'factory', function($scope, factory) {
+    this.add = factory.add;
+  }])
 
-function modalInstanceCtrl ($scope, $modalInstance, factory) {
-  this.getCommentIndex = factory.getCommentIndex;
-  $scope.ok = function () {
-    $modalInstance.close();
-  };
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-}
+  .controller('addCommentController', ['$scope', 'factory', '$rootScope', '$location', function($scope, factory, $rootScope, $location) {
+    this.blur = "blurbackground";
+    $rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
+      $rootScope.animation = currRoute.animation;
+    });
+    this.currentUser = factory.currentUser;
+    this.postIndexforcomment = factory.postIndexforcomment;
+    this.addComment = factory.addComment;
+    this.removeComment = factory.removeComment;
+    this.getCommentIndex = factory.getCommentIndex;
+    this.pathlocation = $location;
+    this.removePost = factory.removePost;
+  }])
+
+  .controller('modalInstanceCtrl', ['$scope', '$modalInstance', 'factory', function($scope, $modalInstance, factory) {
+    this.getCommentIndex = factory.getCommentIndex;
+    $scope.ok = function () {
+      $modalInstance.close();
+    };
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+  }])

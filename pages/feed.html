@@ -4,20 +4,20 @@
       <div ng-repeat="entry in feed.list()" class="posts">
         <h3>
           <img ng-src="{{entry.img}}">
-          {{entry.username}}
-          <!-- <div class="text-danger pull-right">
+          {{entry.username}} {{main.pathlocation.path()}}
+          <div class="text-danger pull-right" ng-if="entry.username == main.currentUser()[0].username">
             <i class="icon-remove" ng-click="open(this.$index)"></i>
-          </div> -->
+          </div>
         </h3>
         <div>
           <p>{{entry.link}}</p>
-          <a class="pull-right btn btn-info btn-xs" href="#/addcomment" ng-click="feed.whatindex($index); feed.postIndexforcomment()" ng-if="entry.comments.length > 0">
+          <p class="text-right"><small>{{entry.time | date:'MMM d, y @ h:mm a'}}</small></p>
+          <a class="btn btn-info btn-xs" href="#/addcomment" ng-click="feed.whatindex($index); feed.postIndexforcomment()" ng-if="entry.comments.length > 0">
             {{entry.comments.length}} Comment<span ng-hide="entry.comments.length == 1">s</span>
           </a>
-          <a class="pull-right btn btn-info btn-xs" href="#/addcomment" ng-click="feed.whatindex($index); feed.postIndexforcomment()" ng-if="entry.comments.length == 0">
+          <a class="btn btn-info btn-xs" href="#/addcomment" ng-click="feed.whatindex($index); feed.postIndexforcomment()" ng-if="entry.comments.length == 0">
             No Comments
           </a>
-          <p>{{entry.time | date:'MMM d, y @ h:mm a'}}</p>
         </div>
       </div>
     </div>

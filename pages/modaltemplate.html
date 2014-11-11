@@ -1,13 +1,14 @@
+{{main.pathlocation.path()}}
 <div class="container-fluid" ng-controller="addCommentController as addcomment">
   <div class="modal-header">
-    <h3 class="modal-title">Delete</h3>
+    <h3 class="modal-title">Delete <!-- {{addcomment.getCommentIndex()}} --></h3>
   </div>
   <div class="modal-body">
     Are you sure you want to delete this post?
   </div>
   <div class="modal-footer">
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-primary" ng-click="addcomment.removeComment(addcomment.getCommentIndex()); ok()">Yes</button>
-    <!-- ;addcomment.removeComment($index) -->
+    <button class="btn btn-primary" ng-click="addcomment.removePost(addcomment.getCommentIndex(),main.pathlocation.path()); ok()">Yes Remove Post</button>
+    <button class="btn btn-primary" ng-click="addcomment.removeComment(addcomment.getCommentIndex(),main.pathlocation.path()); ok()">Yes Remove Comment</button>
   </div>
 </div>
