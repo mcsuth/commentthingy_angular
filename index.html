@@ -30,8 +30,8 @@
                 <div ng-repeat="currentUser in main.currentUser()">
                   <img ng-src="{{currentUser.img}}">
                   {{currentUser.username}}
-                  <a href="#/addpost" class="btn btn-primary btn-xs">Add Post</a>
-                  <a href="#/" class="btn btn-default btn-xs" ng-if="main.pathlocation.path() == '/addcomment' || main.pathlocation.path() == '/addpost'">Back to Feed</a>
+                  <a href="#/addpost" class="pull-right btn btn-primary btn-xs" ng-hide="main.pathlocation.path() == '/addcomment' || main.pathlocation.path() == '/addpost'">Add Post</a>
+                  <a href="#/" class="pull-right btn btn-default btn-xs" ng-if="main.pathlocation.path() == '/addcomment' || main.pathlocation.path() == '/addpost'">Back to Feed</a>
                 </div>
               </p>
             </h1>

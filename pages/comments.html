@@ -1,7 +1,7 @@
-<div class="container-fluid" ng-controller="addCommentController as addcomment">
+<div ng-controller="addCommentController as addcomment">
   <div class="row" ng-class="{blur: $index}">
     <div class="col-md-12 col-md-offset-0">
-      <div class="posts page {{ pageClass }}">
+      <div class="posts">
         <h3>
           <img ng-src="{{main.list()[addcomment.postIndexforcomment()].img}}">
           {{main.list()[addcomment.postIndexforcomment()].username}}

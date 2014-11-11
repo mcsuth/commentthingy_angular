@@ -1,8 +1,14 @@
 <div ng-controller="addPostController as post">
-  <h2>Add Post</h2>
-  <form ng-submit="post.add(newItem); newItem = '';">
-    <input type="text" placeholder="new item..." ng-model="newItem"/>
-    <br />
-    <input class="btn" type="submit"/>
-  </form>
+  <div class="row" ng-class="{blur: $index}">
+    <div class="col-md-12 col-md-offset-0">
+      <div class="posts">
+        <h2>Write a Post</h2>
+        <form ng-submit="post.add(newItem); newItem = '';">
+          <input type="text" class="form-control" placeholder="new item..." ng-model="newItem"/>
+          <br />
+          <input class="btn" type="submit"/>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

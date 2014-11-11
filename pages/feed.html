@@ -1,5 +1,5 @@
-<div class="container-fluid" ng-controller="mainController as feed">
-  <div class="row">
+<div ng-controller="mainController as feed">
+  <div class="row" ng-class="{blur: $index}">
     <div class="col-md-12 col-md-offset-0">
       <div ng-repeat="entry in feed.list()" class="posts">
         <h3>
