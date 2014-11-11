@@ -56,7 +56,7 @@ header {
   transition: top 0.2s ease-in-out;
 }
 .nav-up {
-    top: -105px;
+    top: -95px;
 }
 a.btn, input.btn {
   border-radius: 0px;
@@ -86,11 +86,37 @@ h3 > img {
     font-size: 18px;
   }
 }
-@media (max-width: 775px) {
-  h3 {
-    font-size: 34px;
+@media only screen and (max-device-width: 480px) {
+  header {
+    /*background: red;*/
+    height: 200px;
+  }
+  .nav-up {
+    top: -190px;
+  }
+  .posts {
+    margin-top: 150px;
+  }
+  h1.header, h3, h1 div, #commentsforlinkno div span{
+    font-size: 64px !important;
   }
   p, a.btn, input.btn, div.posts, .modal-body, input.form-control {
-    font-size: 22px;
+    font-size: 52px;
+  }
+  input.form-control {
+    height: 100px;
+  }
+  img, #commentsforlinkno div img{
+    margin: -10px 15px 0 0px;
+    width: 150px;
+    height: 150px;
+  }
+  .postcomments p {
+    margin: 35px 0px 0px 30px;
+  }
+  img, #commentsforlinkno div img {
+    margin: 15px 20px 0 20px;
+    width: 150px;
+    height: 150px;
   }
 }
