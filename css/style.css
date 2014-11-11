@@ -45,3 +45,24 @@ input.form-control {
 .commentsforlinks {
   margin: 20px 0 0 0;
 }
+header {
+  padding: 20px;
+  background: rgba(255, 228, 128, 0.9);
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  z-index: 5;
+  top: -20px;
+  left: 0;
+  transition: top 0.2s ease-in-out;
+}
+.nav-up {
+    top: -100px;
+}
+a.btn, input.btn {
+  border-radius: 0px;
+  padding: 5px 15px 5px 15px;
+}
+h3 > img {
+  margin: 0 10px 0 0;
+}

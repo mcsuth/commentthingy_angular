@@ -23,21 +23,20 @@
   <div ng-controller="mainController as main" ng-class="animation">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3 col-md-offset-0">
-          <div>
+        <div class="col-md-12 col-md-offset-0">
+          <header class="nav-down">
             <h1 id="header">
               <p>
                 <div ng-repeat="currentUser in main.currentUser()">
                   <img ng-src="{{currentUser.img}}">
                   {{currentUser.username}}
-                  <a href="#/addpost" class="pull-right btn btn-primary btn-xs">Add Post</a>
-                  <br>
-                  <a href="#/" class="pull-right btn btn-default btn-xs" ng-if="main.pathlocation.path() == '/addcomment'">Back to Feed</a>
+                  <a href="#/addpost" class="btn btn-primary btn-xs">Add Post</a>
+                  <a href="#/" class="btn btn-default btn-xs" ng-if="main.pathlocation.path() == '/addcomment' || main.pathlocation.path() == '/addpost'">Back to Feed</a>
                 </div>
               </p>
             </h1>
             <!-- {{main.pathlocation.path()}} --> 
-          </div>
+          </header>
         </div>
       </div>
     </div>
@@ -47,5 +46,6 @@
   </div>
   <!-- My JavaScript -->
   <script src="script.js"></script>
+  <script src="stickymenu.js"></script>
 </body>
 </html>

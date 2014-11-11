@@ -1,6 +1,6 @@
 <div class="container-fluid" ng-controller="addCommentController as addcomment">
   <div class="row" ng-class="{blur: $index}">
-    <div class="col-md-3 col-md-offset-0">
+    <div class="col-md-12 col-md-offset-0">
       <div class="posts page {{ pageClass }}">
         <h3>
           <img ng-src="{{main.list()[addcomment.postIndexforcomment()].img}}">
@@ -11,7 +11,7 @@
         </div>
         <hr>
         <div id="commentsforlinkno{{$index}}">
-          <div ng-repeat="comment in main.list()[addcomment.postIndexforcomment()].comments" class="postcomments animate-repeat" ng-class="{in: animate}">
+          <div ng-repeat="comment in main.list()[addcomment.postIndexforcomment()].comments" class="postcomments animate-repeat">
             <img ng-src="{{comment.img}}">
             <span>
               {{comment.username}}

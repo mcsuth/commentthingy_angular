@@ -13,7 +13,12 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
     var itemComment;
     
     feeditems.add = function(item) {
-      mockdata.push(item);
+      // mockdata.push(item);
+      var d = new Date();
+      var n = d.getTime();
+      itemComment = {username: currentUser[0].username, img: currentUser[0].img, link: item, time: n, comments: []};
+      mockdata.push(itemComment);
+      debugger
     };
     feeditems.currentUser = function() {
       return currentUser;
