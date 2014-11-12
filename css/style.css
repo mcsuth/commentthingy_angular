@@ -91,12 +91,12 @@ h3 > img {
     height: 230px;
   }
   .nav-up {
-    top: -230px;
+    top: -250px;
   }
   .posts {
     margin-top: 150px;
   }
-  h1.header, h3, h1 div, #commentsforlinkno div span{
+  h1.header, h3, h2, h1 div, #commentsforlinkno div span{
     font-size: 64px !important;
   }
   p, a.btn, input.btn, div.posts, .modal-body, input.form-control {
@@ -136,9 +136,15 @@ h3 > img {
     margin: 50px 30px 60px 30px;
   }
   i[class="icon-remove"] {
-    color: green;
     font-size: 80px !important;
     position: relative;
     top: 25px;
+  }
+  .modal-dialog {
+    width: 90% !important;
+    margin: 30% auto;
+  }
+  .modal-footer div div a {
+    margin: 10px 0 0 0;
   }
 }
