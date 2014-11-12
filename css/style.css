@@ -88,11 +88,10 @@ h3 > img {
 }
 @media only screen and (max-device-width: 480px) {
   header {
-    /*background: red;*/
-    height: 200px;
+    height: 230px;
   }
   .nav-up {
-    top: -190px;
+    top: -230px;
   }
   .posts {
     margin-top: 150px;
@@ -118,5 +117,28 @@ h3 > img {
     margin: 15px 20px 0 20px;
     width: 150px;
     height: 150px;
+  }
+  .posts {
+    padding: 60px
+  }
+  .posts h3 {
+    margin: 0 0 30px 0;
+  }
+  #header div a.addPost, header h1 div a {
+    width: 40%;
+    margin: 40px;
+  }
+  .posts div p:nth-child(2), .posts div p.text-right{
+    margin: 30px 30px 30px 0;
+    color: #999;
+  }
+  .postcomments div p {
+    margin: 50px 30px 60px 30px;
+  }
+  i[class="icon-remove"] {
+    color: green;
+    font-size: 80px !important;
+    position: relative;
+    top: 25px;
   }
 }
