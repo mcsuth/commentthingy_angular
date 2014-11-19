@@ -28,6 +28,9 @@
             <h1 id="header">
               <p>
                 <div ng-repeat="currentUser in main.currentUser()">
+                  <div id="newCommentsAlert">
+                    {{main.getNewCommentAlert()}}
+                  </div>
                   <img ng-src="{{currentUser.img}}">
                   {{currentUser.username}}
                   <a href="#/addpost" class="btn btn-primary btn-xs addPost pull-right" ng-hide="main.pathlocation.path() == '/addcomment' || main.pathlocation.path() == '/addpost'">Add Post</a>

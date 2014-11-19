@@ -1,4 +1,9 @@
 // Create Angular app module - injected dependencies here.
+/* 
+  Used ngRoute for ng-view templating
+  Used ui.bootstrap for modals
+  Used ngAnimate for page transitioning: animation.css
+*/
 angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
   // Factory for data to be used in differernt controllers
   .factory('factory', function() {
@@ -22,6 +27,8 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
     var itemComment;
     // Initialize variable to get the path that can be used in other controllers
     var thepath;
+    // Toaster alert for new comments
+    var newCommentAlert = 0;
     // Getting and setting functions for adding, removing, etc
     feeditems.add = function(item) {
       var d = new Date();
@@ -45,11 +52,16 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
       return postIndexforcomment;
     };
     feeditems.addComment = function(item) {
+      newCommentAlert++;
+      newCommentAlert = newCommentAlert++;
       var d = new Date();
       var n = d.getTime();
       var itemComment = {username: currentUser[0].username, img: currentUser[0].img, comment: item, time: n};
       mockdata[postIndexforcomment].comments.push(itemComment);
     };
+    feeditems.getNewCommentAlert = function() {
+      return newCommentAlert;
+    }
     feeditems.setCommentIndex = function(index) {
       commentIndex = index;
     };
@@ -109,6 +121,7 @@ angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
       this.setCommentIndex = factory.setCommentIndex(this.$index); // Set the comment index
       this.setPath = factory.setPath(path); // Set the path
     };
+    this.getNewCommentAlert = factory.getNewCommentAlert;
   }])
   // This controller is for adding a post to the feed
   .controller('addPostController', ['$scope', 'factory', function($scope, factory) {

@@ -12,12 +12,17 @@ setInterval(function() {
     if (didScroll) {
         hasScrolled();
         didScroll = false;
+        // console.log(didScroll)
     }
+    /* 
+    This is dangerius because it continually checks to see if you did 
+    scroll forever then call the hasScrolled() function and sets the didscrool 
+    variable to false
+    */
 }, 250);
 
 function hasScrolled() {
     var st = $(this).scrollTop();
-    
     // Make sure they scroll more than delta
     if(Math.abs(lastScrollTop - st) <= delta)
         return;
